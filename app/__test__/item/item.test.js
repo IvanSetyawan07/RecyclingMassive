@@ -50,4 +50,23 @@ describe("Item Controller", () => {
       expect(updateResponse.body.status).toBe(200);
     });
   });
+
+  describe("Delete Item", () => {
+    it("should delete an existing item", async () => {
+      
+      const newItem = {
+        name: "Item to be deleted",
+        points: 15,
+        total: 150,
+      };
+  
+      const createResponse = await supertest(app).post("/api/items").set("Authorization", token).send(newItem).expect(201);
+  
+      const itemId = createResponse.body.data.id;
+
+      const deleteResponse = await supertest(app).delete(`/api/items/${itemId}`).set("Authorization", token).expect(200);
+  
+      expect(deleteResponse.body.status).toBe(200);
+    });
+  });
 });

@@ -1,4 +1,4 @@
-import { createDatabaseConnection } from "./db";
+import { createDatabaseConnection } from "./db.js";
 
 describe("Database Connection", () => {
   it("should successfully connect to the database", async () => {

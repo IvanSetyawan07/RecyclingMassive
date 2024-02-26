@@ -55,3 +55,19 @@ export const createExchangeTransaction = async (req, res, next) => {
     next(error);
   }
 };
+
+export const deleteExchangeTransaction = async (req, res, next) => {
+  try {
+    const { exchangeId } = req.params;
+
+    // Delete exchange transaction using raw SQL
+    const [deletedExchangeTransaction] = await dbPool.query("DELETE FROM ExchangeTransaction WHERE id = ?", [exchangeId]);
+
+    res.status(200).json({
+      status: 200,
+      data: deletedExchangeTransaction,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

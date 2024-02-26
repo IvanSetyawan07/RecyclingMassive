@@ -2,7 +2,7 @@ import mysql from "mysql2/promise";
 
 const connectionConfig = {
   host: "localhost",
-  port: 3307,
+  port: 5174,
   user: "root",
   password: "root",
   database: "new-recycling",

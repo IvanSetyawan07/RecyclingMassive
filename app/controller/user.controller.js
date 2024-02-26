@@ -1,4 +1,4 @@
-import { verifyToken } from "../lib/tokenHandler.js";
+  import { verifyToken } from "../lib/tokenHandler.js";
 import dbPool from "../lib/dbConnect.js";
 
 export const getUser = async (req, res, next) => {

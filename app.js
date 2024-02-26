@@ -3,8 +3,8 @@ import cors from "cors";
 import routes from "./app/routes/routes.js";
 
 const app = express();
-const port = process.env.PORT || 5010;
-const host = process.env.HOST || "https://api.smart-recycling.my.id/api-docs/";
+const port = process.env.PORT || 5174;
+const host = process.env.HOST || "http://localhost";
 
 const corsOptions = {
   origin: "*",
