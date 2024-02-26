@@ -41,7 +41,7 @@ export default function DashboardAdminPage() {
     },
     {
       key: "6",
-      icon: <CopyrightOutlined />, 
+      icon: <CopyrightOutlined />,
       label: "Manage Items",
     },
   ];
