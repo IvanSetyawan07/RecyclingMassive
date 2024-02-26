@@ -147,7 +147,7 @@ export default function ManageUsersContent() {
               ...column,
               key: column.dataIndex,
             }))}
-            dataSource={usersData ? usersData.data : []}
+            dataSource={usersData ? usersData.data.map((user) => ({ ...user, key: user.id })) : []}
           />
 
           <Modal

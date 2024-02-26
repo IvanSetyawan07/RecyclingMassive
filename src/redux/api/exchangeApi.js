@@ -1,6 +1,7 @@
 import { getUserAuthHeaderApi } from "../apiHelper";
 import { baseApi } from "../axiosBaseQuery";
 
+
 export const exchangeApi = baseApi.enhanceEndpoints({}).injectEndpoints({
   endpoints(builder) {
     return {
@@ -27,9 +28,24 @@ export const exchangeApi = baseApi.enhanceEndpoints({}).injectEndpoints({
             user_id: data.user_id,
           },
         }),
+      }),deleteExchange: builder.mutation({
+        query: (exchangeId) => ({
+          url: `/exchange/${exchangeId}`,
+          method: "DELETE",
+          headers: getUserAuthHeaderApi(),
+        }),
       }),
+      
+      
     };
+    
   },
 });
 
-export const { useGetExchangeQuery, useGetExchangeByIdQuery, usePostExchangeByIdMutation } = exchangeApi;
+
+export const {
+  useGetExchangeQuery,
+  useGetExchangeByIdQuery,
+  usePostExchangeByIdMutation,
+  useDeleteExchangeMutation, // Add this line
+} = exchangeApi;

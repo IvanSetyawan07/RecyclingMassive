@@ -11,6 +11,7 @@ export default function CardExchange() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  
 
   useEffect(() => {
     console.log(useItem);

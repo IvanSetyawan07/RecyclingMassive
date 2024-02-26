@@ -37,15 +37,15 @@ export default function DashboardContent() {
 
   const calculateTotalForEachItem = (itemsData) => {
     const totals = {
-      Tshirt: 0,
+      Kaos: 0,
       Totebag: 0,
       Bottle: 0,
       Cutlery: 0,
     };
     itemsData.data.forEach((item) => {
       switch (item.name.toLowerCase()) {
-        case "kaos":
-          totals.Tshirt += item.total;
+        case "t-shirt":
+          totals.Kaos += item.total;
           break;
         case "totebag":
           totals.Totebag += item.total;
@@ -149,7 +149,7 @@ export default function DashboardContent() {
       <Card bordered={true}>
         <Row gutter={[16, 16]}>
           {renderStatisticCard("Total Items", itemsData.data.length, <BarsOutlined />, "items")}
-          {renderStatisticCard("Total T-Shirt", itemsTotals.Tshirt, <FileDoneOutlined />, "T-Shirts")}
+          {renderStatisticCard("Total T-Shirt", itemsTotals.Kaos, <FileDoneOutlined />, "T-Shirts")}
           {renderStatisticCard("Total Totebag", itemsTotals.Totebag, <ContainerOutlined />, "Totebags")}
           {renderStatisticCard("Total Bottle", itemsTotals.Bottle, <AppstoreAddOutlined />, "Bottles")}
           {renderStatisticCard("Total Cutlery", itemsTotals.Cutlery, <CheckCircleOutlined />, "Cutleries")}

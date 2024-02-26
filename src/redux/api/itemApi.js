@@ -1,7 +1,7 @@
 import { getUserAuthHeaderApi } from "../apiHelper";
 import { baseApi } from "../axiosBaseQuery";
 
-export const itemApi = baseApi.enhanceEndpoints({}).injectEndpoints({
+export const itemApi = baseApi.enhanceEndpoints({ addTagTypes: ["itemTag"] }).injectEndpoints({
   endpoints(builder) {
     return {
       getItem: builder.query({
@@ -10,18 +10,27 @@ export const itemApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           method: "GET",
           headers: getUserAuthHeaderApi(),
         }),
+        providesTags: ["itemTag"],
       }),
+      getAllItem: builder.query({
+        query: () => ({
+          url: `/items`,
+          method: "GET",
+          headers: getUserAuthHeaderApi(),
+      }),
+      providesTags: ["itemTag"],
+    }),
       postItem: builder.mutation({
         query: ({ data }) => ({
           url: `/items`,
           method: "POST",
           body: {
-            email: data.email,
-            subject: data.subject,
-            location: data.location,
-            user_id: data.user_id,
+            name: data.name,
+            points: data.points,
+            total: data.total,
           },
         }),
+        invalidatesTags: ["itemTag"],
       }),
       putItem: builder.mutation({
         query: ({ itemId, data }) => ({
@@ -30,9 +39,34 @@ export const itemApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           body: data,
           headers: getUserAuthHeaderApi(),
         }),
+        invalidatesTags: ["itemTag"],
+      }),
+      inputPoints: builder.mutation({
+        query: ({ itemId, name, points, total }) => ({
+          url: `/items/${itemId}`,
+          method: "PUT",
+          body: {
+            name,
+            points:parseInt(points),
+            total:parseInt(total),
+          }
+        }),
+        invalidatesTags: ["itemTag"],
+      }),
+      inputQuantity: builder.mutation({
+        query: ({ itemId, name, points, total }) => ({
+          url: `/items/${itemId}`,
+          method: "PUT",
+          body: {
+            name,
+            points:parseInt(points),
+            total:parseInt(total),
+          }
+        }),
+        invalidatesTags: ["itemTag"],
       }),
     };
   },
 });
 
-export const { useGetItemQuery, usePostItemMutation, usePutItemMutation } = itemApi;
+export const { useGetItemQuery, useGetAllItemQuery,usePostItemMutation, usePutItemMutation, useInputPointsMutation, useInputQuantityMutation } = itemApi;

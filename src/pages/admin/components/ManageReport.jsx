@@ -52,7 +52,13 @@ const ManageReportsContent = () => {
       <div className="">
         <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Reports</p>
         <Spin spinning={reportLoading}>
-          <Table columns={columns} dataSource={reportData ? reportData.data.flat() : []} />
+          <Table
+            columns={columns.map((column) => ({
+              ...column,
+              key: column.dataIndex,
+            }))}
+            dataSource={reportData ? reportData.data.flat().map(item => ({ ...item, key: item.id })) : []}
+          />
         </Spin>
       </div>
     </>

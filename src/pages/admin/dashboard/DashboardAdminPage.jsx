@@ -9,6 +9,7 @@ import ManageEventsContent from "../components/ManageEvent.jsx";
 import ManageReportsContent from "../components/ManageReport.jsx";
 import ManageExchangeContent from "../components/ManageExchange.jsx";
 import ManageUsersContent from "../components/ManageUser.jsx";
+import ManageItemContent from "../components/ManageItem.jsx";
 const { Header, Sider, Content } = Layout;
 
 export default function DashboardAdminPage() {
@@ -37,6 +38,11 @@ export default function DashboardAdminPage() {
       key: "5",
       icon: <CopyrightOutlined />,
       label: "Manage Exchange",
+    },
+    {
+      key: "6",
+      icon: <CopyrightOutlined />, 
+      label: "Manage Items",
     },
   ];
 
@@ -142,6 +148,7 @@ export default function DashboardAdminPage() {
               {selectedTab === "3" && <ManageEventsContent />}
               {selectedTab === "4" && <ManageReportsContent />}
               {selectedTab === "5" && <ManageExchangeContent />}
+              {selectedTab === "6" && <ManageItemContent />}
             </div>
           </Content>
         </Layout>

@@ -54,14 +54,13 @@ const ManageEventsContent = () => {
       responsive: ["lg"],
     },
   ];
-
   return (
     <>
       <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Events</p>
-      <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)} indicatorSize={(origin) => origin - 16}>
+      <Tabs defaultActiveKey="1" onChange={(key) => handleTabChange(key)} indicator={{ size: (origin) => origin - 16 }}>
         <Tabs.Item key="1" tab="All Events">
           <Spin spinning={eventsLoading}>
-            <Table columns={columns} dataSource={eventData ? eventData.data[0].flatMap((item) => item) : []} />
+            <Table columns={columns} dataSource={eventData ? eventData.data[0].flatMap((item) => ({ ...item, key: item.id })) : []} />
           </Spin>
         </Tabs.Item>
         <Tabs.Item key="2" tab="Input Events">
